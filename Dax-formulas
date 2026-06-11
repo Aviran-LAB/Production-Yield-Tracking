@@ -1,1 +1,31 @@
+### 1. Base Measures (Volumes & Totals)
 
+These formulas are used to establish the foundational totals before calculating percentages or advanced metrics.
+
+* **Total Volume KG:** `Total Volume KG = [Total ''] + [Total ''] + [Total '']`
+* **Total Packs:** `Total Pack = SUM('TableName'[Total])`
+* **Specific Box Size Total (Example for XXL):** `Total XXL Boxes = SUM('TableName'[XXL Boxes])`
+
+### 2. Quality & Yield Percentages
+
+These measures utilize the `DIVIDE` function to safely calculate percentages and prevent "division by zero" errors if a specific commodity has no harvest for the week.
+
+* **Packout Yield %:** `Packout Yield % = DIVIDE([Total Boxes KG], [Total Volume KG])`
+* **Dump Rate %:** `Dump Rate % = DIVIDE([Total Dump KG], [Total Volume KG])`
+* **Grade 1 %:** `Grade 1 % = DIVIDE([Total Boxes], SUM('PackoutData'[Grand Total]))`
+* **Premium Yield % (Generalized for Portfolio):** `Premium Yield % = DIVIDE(SUM('ProductionLogs'[Premium Boxes]), SUM('ProductionLogs'[Total Output Volume]))`
+
+### 3. Box Size Percentages
+
+When calculating the percentage of specific box sizes, the specific size must be the numerator (first argument) and the total volume must be the denominator (second argument).
+
+* **XXL %:** `XXL % = DIVIDE([Total XXL Boxes], [Total Packout])`
+* **M Box % (Corrected):** `M% = DIVIDE('Daily Total Packout PH4'[Total M Boxes], 'Daily Total Packout PH4'[Total Volume Cases])`
+
+### 4. Advanced Logic & Projections (Using Iterators)
+
+These formulas use `SUMX` and `FILTER` to calculate exact kilograms based on the row context (e.g., distinguishing between Harvest and Projection records) and applying a conversion factor.
+
+* **Actual Harvest KG:** `Actual Harvest KG = SUMX(FILTER('Table', [Type]="Harvest"), [Quantity] * [ConversionFactor])`
+* **Projection KG:** `Projection KG = SUMX(FILTER('Table', [Type]="Projection"), [Quantity] * [ConversionFactor])`
+* **Harvest vs. Projection Gap:** `Harvest Gap = [Actual Harvest KG] - [Projection KG]`
