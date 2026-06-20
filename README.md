@@ -36,6 +36,6 @@ To ensure accuracy and prevent division-by-zero errors, I utilized the `DIVIDE` 
 // Example: Calculating Premium Grade Yield Percentage
 Premium Yield % = 
 DIVIDE(
-    SUM('ProductionLogs'[Premium Boxes]), 
-    SUM('ProductionLogs'[Total Output Volume])
+    SUM('TableName'[Premium Boxes]), 
+    SUM('TableName'[Total Output Volume])
 )
