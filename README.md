@@ -1,41 +1,32 @@
-# Production Yield Tracking & Analytics Automation 📊
+# 📊 Agriculture Packout & Yield Analytics Dashboard (Power BI)
 
-## 📝 Project Overview
-This project is an end-to-end data pipeline and analytics solution designed to replace manual spreadsheet tracking on a production floor. By leveraging the Microsoft Power Platform, I created a real-time tracking application, structured the database architecture, and built an interactive dashboard to monitor quality yield, waste rates, and forecast accuracy.
+## 📌 Project Overview
+This project provides an end-to-end Power BI reporting solution designed to track, analyze, and optimize agricultural packing operations, product size distribution, and weekly yield trends. 
 
-**Tools Used:** Power Apps, SharePoint / SQL, Power BI, DAX
-
----
-
-## 🏗️ Architecture & Workflow
-
-### Phase 1: Data Collection (Power Apps)
-* **Mobile-Friendly UI:** Developed a front-end application for production workers to input daily output data seamlessly.
-* **Data Integrity Controls:** Implemented dropdown menus populated from a master dimensional table to prevent manual typos and ensure naming consistency.
-* **Validation Rules:** Configured the application to make 'Weight' and 'Quality Grade' fields mandatory before submission to prevent null values downstream.
-
-### Phase 2: Data Storage & Pipeline (SharePoint / SQL)
-* **Centralized Storage:** Transitioned the business away from siloed Excel files by triggering automated saves to a structured centralized database.
-* **Standardized Logging:** Built dedicated input fields to record product weights and distinct output quality grades (Premium, Secondary, Waste).
-
-### Phase 3: Data Transformation & Modeling
-* **Star Schema Design:** Established a One-to-Many relationship between the Product Reference table (Dimension) and Daily Production logs (Fact).
-* **Primary Keys:** Assigned unique IDs to each product variant to enable a seamless filter context without duplicating records.
-* **Time Intelligence:** Handled null values and generated a dedicated Calendar Table to enable accurate chronological sorting and time-series analysis.
+By centralizing yield data, size breakdowns, waste/dumpage rates, and week-over-week (WoW) performance, this dashboard enables operational teams to make data-driven harvest and distribution decisions.
 
 ---
 
-## 📈 Analytics & Visualization (Power BI)
+## 🏗️ Data Architecture & Modeling
+The solution relies on a robust **Star Schema** to ensure fast query performance and clean DAX calculations across multiple operational tables.
 
-I developed several DAX measures to track Key Performance Indicators (KPIs). 
+### Data Model Structure:
+* **Dimension Tables (Lookups):**
+  * `Calendar`: Custom DAX date dimension supporting week-based time intelligence (`WeekNumber`, `YearWeek`, continuous `WeekIndex`).
+  * `PeperID`: Master dimension containing unique product IDs, colors, and commodity metadata.
+* **Fact Tables (Data):**
+  * `Yearly_Packout`: Grade/size volume distributions (Dump, S, M, L, XL, XXL, No2).
+  * `Yearly_Harvest`: Total harvested kilograms.
+  * `Yearly_Weights`: Pack weight metrics.
+  * `Yearly_Proyection`: Harvest and packout projections.
 
-### Key DAX Measures Developed
-To ensure accuracy and prevent division-by-zero errors, I utilized the `DIVIDE` function calculations.
+---
 
+## 💡 Key Features & DAX Implementations
+
+### 1. Explicit Measure Branching
+Base volume metrics were converted from implicit column sums into explicit DAX measures for modularity, reusability, and formatting control.
 ```dax
-// Example: Calculating Premium Grade Yield Percentage
-Premium Yield % = 
-DIVIDE(
-    SUM('TableName'[Premium Boxes]), 
-    SUM('TableName'[Total Output Volume])
-)
+Grand Total Packout = 
+[Total Dump CS] + [Total Dump kg] + [Total L] + [Total M] + 
+[Total No2] + [Total S] + [Total sXL] + [Total XL] + [Total XXL]
