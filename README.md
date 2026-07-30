@@ -133,5 +133,3 @@ DIVIDE(
 * **SQL** — Relational star-schema design, data constraints, and table definitions.
 
 ---
-
-How does this merged version look for your repository?
