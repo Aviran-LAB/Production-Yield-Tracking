@@ -133,3 +133,16 @@ DIVIDE(
 * **SQL** — Relational star-schema design, data constraints, and table definitions.
 
 ---
+## 📊 Interactive Dashboard Views
+
+### Green Variety Selection
+![Green Selection](assets/Green%20Selection.png)
+
+### Orange Variety Selection
+![Orange Selection](assets/Orange%20Selection.png)
+
+### Red Variety Selection
+![Red Selection](assets/Red%20Selection.png)
+
+### Yellow Variety Selection
+![Yellow Selection](assets/Yellow%20Selection.png)
