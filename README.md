@@ -1,8 +1,4 @@
-Here is a comprehensive, merged `README.md` that integrates the strengths of both drafts into a polished, production-ready document for your GitHub repository.
-
----
-
-# 📊 Agricultural Yield & Packout Analytics Dashboard
+# 📊 Agricultural Packout Analytics Dashboard
 
 An end-to-end Power BI reporting solution designed to track, analyze, and optimize agricultural harvesting operations, size distributions, waste rates, and week-over-week (WoW) performance against projections.
 
@@ -51,8 +47,8 @@ The solution utilizes a clean **Star Schema** architecture in SQL and Power BI t
 * **Fact Tables (Data):**
 * `Yearly_Packout`: Grade/size volume distributions (Dump, S, M, L, sXL, XL, XXL, No2).
 * `Yearly_Harvest`: Raw harvested volumes collected across production areas.
-* `Yearly_Proyection`: Operational targets and yield expectations by week.
-* `Yearly_Weights`: Pack weight metrics and operational weight logs.
+* `Yearly_Proyection`: Operational Harvest expectations by week.
+* `Yearly_Weights`: Daily average Fruits weight logs.
 
 
 * **Referential Integrity:** SQL-defined foreign keys with `ON DELETE CASCADE` rules to maintain clean operational data synchronization.
