@@ -136,13 +136,12 @@ DIVIDE(
 ## 📊 Interactive Dashboard Views
 
 ### Green Variety Selection
-![Green Selection](assets/Green%20Selection.png)
+![Green Selection](assets/Green.png)
 
 ### Orange Variety Selection
-![Orange Selection](assets/Orange%20Selection.png)
+![Orange Selection](assets/Orange.png)
 
 ### Red Variety Selection
-![Red Selection](assets/Red%20Selection.png)
+![Red Selection](assets/Red.png)
 
-### Yellow Variety Selection
-![Yellow Selection](assets/Yellow%20Selection.png)
+
